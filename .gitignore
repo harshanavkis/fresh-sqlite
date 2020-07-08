@@ -52,7 +52,12 @@ Mkfile.old
 dkms.conf
 
 # Specific executables
-*hello
+hello-insert
+hello-query
+
+# Other files
+bitch.db
+merkle.bin
 
 # Private info
 *.pem

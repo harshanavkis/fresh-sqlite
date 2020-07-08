@@ -3,11 +3,15 @@ CFLAGS=
 LDFLAGS= -lpthread -ldl -lcrypto -lssl
 CPPFLAGS= -DSQLITE_HAS_CODEC
 
-hello: hello.c sqlite3.c
-	$(CC) -o hello hello.c sqlite3.c $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) merkle-tree/src/libMerkleTree.a -g
+hello-insert: hello-insert.c sqlite3.c
+	$(CC) -o hello-insert hello-insert.c sqlite3.c mt_serialize.c $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) merkle-tree/src/libMerkleTree.a -g
+
+hello-query: hello-query.c sqlite3.c
+	$(CC) -o hello-query hello-query.c sqlite3.c mt_serialize.c $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) merkle-tree/src/libMerkleTree.a -g
 
 .PHONY: clean
 
 clean:
-	rm -f hello
+	rm -f hello-insert
+	rm -f hello-query
 

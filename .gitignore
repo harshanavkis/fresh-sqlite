@@ -56,8 +56,8 @@ hello-insert
 hello-query
 
 # Other files
-bitch.db
-merkle.bin
+*.db
+*.bin
 
 # Private info
 *.pem

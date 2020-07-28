@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
 	deserialize_init_mt(mt_path, tree);
 
 	int num_ele = mt_get_size(tree->mt);
-  printf("Number of pages protected by tree:%d\n", num_ele);
+  // printf("Number of pages protected by tree:%d\n", num_ele);
 
   rc = sqlite3_open(db_path, &db);
   if(rc)
@@ -76,15 +76,21 @@ int main(int argc, char const *argv[])
 
   gettimeofday(&tv2, NULL);
 
-  printf ("Total query execution time = %f seconds\n",
-         (double) (tv2.tv_usec - tv1.tv_usec) / 1000000 +
-         (double) (tv2.tv_sec - tv1.tv_sec));
+  double query_exec_time = ((double) (tv2.tv_usec - tv1.tv_usec) / 1000000 + (double) (tv2.tv_sec - tv1.tv_sec));
 
-  printf("Total time spent in codec: %f seconds\n", total_enc_time);
-  printf("Total time for key derivation: %f seconds\n", total_kdf_time);
-  printf("Total time spent in merkle tree verification during decryption: %f seconds\n", mt_verify_time);
-  printf("Total number of encryptions: %u\n", num_codec_enc);
-  printf("Total number of decryptions: %u\n", num_codec_dec);
+
+  // printf ("Total query execution time = %f seconds\n",
+  //        (double) (tv2.tv_usec - tv1.tv_usec) / 1000000 +
+  //        (double) (tv2.tv_sec - tv1.tv_sec));
+
+  // printf("Total time spent in codec: %f seconds\n", total_enc_time);
+  // printf("Total time for key derivation: %f seconds\n", total_kdf_time);
+  // printf("Total time spent in merkle tree verification during decryption: %f seconds\n", mt_verify_time);
+  // printf("Total number of encryptions: %u\n", num_codec_enc);
+  // printf("Total number of decryptions: %u\n", num_codec_dec);
+
+  printf("{num_prot_pages: %d, query_exec_time: %f, codec_time: %f, mt_verify_time: %f, num_encryption: %u, num_decryption: %u}\n", 
+    num_ele, query_exec_time, total_enc_time, mt_verify_time, num_codec_enc, num_codec_dec);
 
 	return 0;
 }

@@ -66,7 +66,7 @@ int main(int argc, char const *argv[])
 
   gettimeofday(&tv1, NULL);
 
-  rc = sqlite3_exec(db, query, callback, 0, &zErrMsg);
+  rc = sqlite3_exec(db, query, NULL, 0, &zErrMsg);
   if(rc)
   {
     fprintf(stderr, "Cannot execute query\n");

@@ -89,7 +89,7 @@ int main(int argc, char const *argv[])
   // printf("Total number of encryptions: %u\n", num_codec_enc);
   // printf("Total number of decryptions: %u\n", num_codec_dec);
 
-  printf("{num_prot_pages: %d, query_exec_time: %f, codec_time: %f, mt_verify_time: %f, num_encryption: %u, num_decryption: %u}\n", 
+  printf("{\"num_prot_pages\": %d, \"query_exec_time\": %f, \"codec_time\": %f, \"mt_verify_time\": %f, \"num_encryption\": %u, \"num_decryption\": %u}\n", 
     num_ele, query_exec_time, total_enc_time, mt_verify_time, num_codec_enc, num_codec_dec);
 
 	return 0;

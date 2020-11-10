@@ -107,16 +107,12 @@ int main(int argc, char *argv[])
   sqlite3_close(db);
 
   int num_bytes = serialize_mt(&serial_mt, tree->mt);
-  if((mt_file = fopen(argv[2], "wb+")) != NULL)
-  {
-    fwrite(serial_mt, 1, num_bytes, mt_file);
-    fclose(mt_file);
-  }
-  else
-  {
-    printf("Unable to open merkle tree file for writing\n");
-    return 1;
-  }
+  printf("Creating merkle tree file...\n");
+  while((mt_file = fopen(argv[2], "wb+")) == NULL){}
+
+  printf("Merkle tree file created successfully...\n");
+  fwrite(serial_mt, 1, num_bytes, mt_file);
+  fclose(mt_file);
 
   return 0;
 }

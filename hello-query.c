@@ -8,14 +8,18 @@
 #include "mt_serialize.h"
 #include "mt_wrapper.h"
 #include "perf_counter.h"
+#include "common_globals.h"
+
+int tot_rows_processed = 0;
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 {
-  int i;
-  for(i=0; i<argc; i++){
-    printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-  }
-  printf("\n");
+  //int i;
+  //for(i=0; i<argc; i++){
+  //  printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+  //}
+  //printf("\n");
+  tot_rows_processed += 1;
   return 0;
 }
 
@@ -29,6 +33,9 @@ int main(int argc, char const *argv[])
 	sqlite3* db;
   char *zErrMsg = 0;
   int rc;
+
+  make_record = 1;
+  make_ssd_records_proc = 0;
 
   num_codec_enc = 0;
   num_codec_dec = 0;
@@ -73,7 +80,7 @@ int main(int argc, char const *argv[])
 
   gettimeofday(&tv1, NULL);
 
-  rc = sqlite3_exec(db, query, NULL, 0, &zErrMsg);
+  rc = sqlite3_exec(db, query, callback, 0, &zErrMsg);
   if(rc)
   {
     fprintf(stderr, "Cannot execute query\n");
@@ -98,6 +105,8 @@ int main(int argc, char const *argv[])
 
   printf("{\"num_prot_pages\": %d, \"query_exec_time\": %f, \"codec_time\": %f, \"mt_verify_time\": %f, \"num_encryption\": %u, \"num_decryption\": %u}\n", 
     num_ele, query_exec_time, total_enc_time, mt_verify_time, num_codec_enc, num_codec_dec);
+  fprintf(stderr, "ssd_records:%d\n", make_ssd_records_proc);
+  fprintf(stderr, "Tot rows proc:%d\n",tot_rows_processed); 
 
 	return 0;
 }

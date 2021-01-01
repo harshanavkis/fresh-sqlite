@@ -69,12 +69,12 @@ int main(int argc, char const *argv[])
     }
   }
 
-  rc = sqlite3_exec(db, "PRAGMA cache_size=0;", NULL, 0, &zErrMsg);
-  if(rc)
-  {
-    fprintf(stderr, "Unable to reduce page cache size\n");
-    return 1;
-  }
+  //rc = sqlite3_exec(db, "PRAGMA cache_size=0;", NULL, 0, &zErrMsg);
+  //if(rc)
+  //{
+  //  fprintf(stderr, "Unable to reduce page cache size\n");
+  //  return 1;
+  //}
 
   struct timeval tv1, tv2;
 

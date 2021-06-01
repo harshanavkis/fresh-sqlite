@@ -10,7 +10,7 @@ hello-query: hello-query.c sqlite3.c
 	if [ $(SCONE) = "true" ]; then \
 		$(CC) -o hello-query hello-query.c sqlite3.c mt_serialize.c $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) -L${OPENSSL_SRC} merkle-tree/src/libMerkleTree.a -g ; \
 	else \
-		$(CC) -o hello-query hello-query.c sqlite3.c mt_serialize.c $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) ${OPENSSL_SRC}/libcrypto.a ${OPENSSL_SRC}/libssl.a merkle-tree/src/libMerkleTree.a -g ; \
+		$(CC) -o hello-query hello-query.c sqlite3.c mt_serialize.c $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) merkle-tree/src/libMerkleTree.a -g ; \
 	fi
 
 .PHONY: clean

@@ -78,7 +78,7 @@ int main(int argc, char const *argv[])
 
   struct timeval tv1, tv2;
 
-  fprintf("Query: %s\n", query);
+  fprintf(stderr, "Query: %s\n", query);
 
   gettimeofday(&tv1, NULL);
 

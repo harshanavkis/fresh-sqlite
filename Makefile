@@ -13,6 +13,9 @@ hello-query: hello-query.c sqlite3.c
 		$(CC) -o hello-query hello-query.c sqlite3.c mt_serialize.c $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) merkle-tree/src/libMerkleTree.a -g ; \
 	fi
 
+storage-query: storage-query.c sqlite3.c
+	$(CC) -o storage-query storage-query.c sqlite3.c mt_serialize.c $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) merkle-tree/src/libMerkleTree.a -g
+
 .PHONY: clean
 
 clean:

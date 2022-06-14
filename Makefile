@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-I${OPENSSL_SRC}/include/
-LDFLAGS= -lpthread -ldl -lcrypto -lssl
+LDFLAGS= -lpthread -ldl -lcrypto -lssl -zmuldefs
 CPPFLAGS= -DSQLITE_HAS_CODEC
 
 hello-insert: hello-insert.c sqlite3.c
